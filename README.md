@@ -10,7 +10,7 @@ A growing collection of useful helpers and fully functional, ready-made utils fo
 
 ## Usage
 
-Copy the code from the snippet you want to use and paste it into your theme's snippets folder. Then include the snippet in your theme's sections.
+Copy the code from the snippet you want to use and paste it into your theme's `/snippets` folder. Then include the snippet in your theme sections.
 
 ```liquid
 {% render 'snippet-name' %}
@@ -18,13 +18,13 @@ Copy the code from the snippet you want to use and paste it into your theme's sn
 
 ### Theme App Extensions
 
-For theme app extensions, you can do the same thing as above, but instead of section, you include theme in your app blocks.
+For theme app extensions, you can do the same thing as above, but instead of sections, you include the snippet in your app blocks.
 
 ## Tools
 
 ### Development screen indicator
 
-A simple indicator that shows if you are on a development screen. Useful for debugging and development.
+A simple indicator that shows which viewport size you are in. Useful for debugging and development.
 
 Built with [Tailwind CSS](https://tailwindcss.com/) and can be added on the `theme.liquid` layout file.
 
@@ -36,7 +36,7 @@ Built with [Tailwind CSS](https://tailwindcss.com/) and can be added on the `the
 %}
 ```
 
-An example setting to enable the development screen indicator:
+An example of a setting to enable the development screen indicator on demand:
 
 ```json
 {
@@ -51,7 +51,7 @@ An example setting to enable the development screen indicator:
 
 ### Social share
 
-A small snippet to render all necessary meta tags for social sharing and link preview on socials.
+A small snippet to render all necessary meta tags for social sharing and page previews on socials.
 
 ```liquid
 {% render 'social-share' %}
@@ -61,11 +61,11 @@ You can also check Shopify [recommandations](https://help.shopify.com/manual/onl
 
 #### Debugging previews
 
-TO debug your social share previews, you can use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the [Twitter Card Validator](https://cards-dev.twitter.com/validator).
+To debug your social share previews, you can use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the [Twitter Card Validator](https://cards-dev.twitter.com/validator).
 
 ## Contributing
 
-We'd love your help! Please read our [contributing guide](./CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements.
+We'd love your help! Please read our [contributing guide](https://github.com/odestry/contribute) to learn about our development process, how to propose bug fixes and improvements.
 
 ## License
 
