@@ -6,7 +6,7 @@
 [Contributing](#contributing) |
 [License](#license)
 
-A growing collection of useful helpers and fully functional, ready-made utils for Liquid theme development. If you make a snippet that is generic enough to be useful to others, think about [CONTRIBUTING](./CONTRIBUTING.md).
+A growing collection of useful helpers and fully functional, ready-made utils for Shopify theme development. If you make a snippet that is generic enough to be useful to others, think about [CONTRIBUTING](#contributing).
 
 ## Usage
 
@@ -16,7 +16,7 @@ Copy the code from the snippet you want to use and paste it into your theme's `/
 {% render 'snippet-name' %}
 ```
 
-### Theme App Extensions
+### Theme app extensions
 
 For theme app extensions, you can do the same thing as above, but instead of sections, you include the snippet in your app blocks.
 
