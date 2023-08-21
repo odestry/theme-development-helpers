@@ -16,9 +16,20 @@ Copy the code from the snippet you want to use and paste it into your theme's `/
 {% render 'snippet-name' %}
 ```
 
+You can also use our theme starter template to quickly preview these helpers. See [odestry/theme-starter](https://github.com/odestry/theme-starter).
+
 ### Theme app extensions
 
 For theme app extensions, you can do the same thing as above, but instead of sections, you include the snippet in your app blocks.
+
+### Index
+
+You can navigate these snippets by using the table below.
+
+| Category | Snippet | Description |
+| --- | --- | --- |
+| [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development. 
+| [Metas](#metas) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
 
 ## Tools
 
