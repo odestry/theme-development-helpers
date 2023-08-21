@@ -1,0 +1,15 @@
+{% comment %}
+  Renders a development screen size indicator in the bottom left corner of the screen for TailwindCSS.
+
+  Usage:
+    {% render 'development-screen-indicator' %}
+{% endcomment %}
+
+<ul class="fixed list-none bottom-2 left-2 z-50 flex h-8 w-8 items-center justify-center rounded-full bg-black p-3 font-mono text-sm text-white">
+  <li class="block sm:hidden">xs</li>
+  <li class="hidden sm:block md:hidden">sm</li>
+  <li class="hidden md:block lg:hidden">md</li>
+  <li class="hidden lg:block xl:hidden">lg</li>
+  <li class="hidden xl:block 2xl:hidden">xl</li>
+  <li class="hidden 2xl:block">2xl</li>
+</ul>
