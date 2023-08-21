@@ -51,13 +51,17 @@ An example setting to enable the development screen indicator:
 
 ### Social share
 
-A social share to render all necessary meta tags for social sharing.
+A small snippet to render all necessary meta tags for social sharing and link preview on socials.
 
 ```liquid
 {% render 'social-share' %}
 ```
 
-You can check Shopify recommandations on social sharing [here](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images).
+You can also check Shopify [recommandations](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images) on social sharing.
+
+#### Debugging previews
+
+TO debug your social share previews, you can use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the [Twitter Card Validator](https://cards-dev.twitter.com/validator).
 
 ## Contributing
 
