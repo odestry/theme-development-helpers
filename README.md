@@ -8,6 +8,18 @@
 
 A growing collection of useful helpers and fully functional, ready-made utils for Liquid theme development. If you make a snippet that is generic enough to be useful to others, think about [CONTRIBUTING](./CONTRIBUTING.md).
 
+## Usage
+
+Copy the code from the snippet you want to use and paste it into your theme's snippets folder. Then include the snippet in your theme's sections.
+
+```liquid
+{% render 'snippet-name' %}
+```
+
+### Theme App Extensions
+
+For theme app extensions, you can do the same thing as above, but instead of section, you include theme in your app blocks.
+
 ## Tools
 
 ### Development screen indicator
@@ -34,6 +46,18 @@ An example setting to enable the development screen indicator:
     "default": false
 }
 ```
+
+## Metas
+
+### Social share
+
+A social share to render all necessary meta tags for social sharing.
+
+```liquid
+{% render 'social-share' %}
+```
+
+You can check Shopify recommandations on social sharing [here](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images).
 
 ## Contributing
 
