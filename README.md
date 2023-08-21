@@ -1,6 +1,6 @@
 # Theme Development Helpers
 
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&colorA=338fbb&colorB=1c1c1c&logoColor=ffffff)](./CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat&colorA=338fbb&colorB=1c1c1c&logoColor=ffffff)](https://github.com/odestry/contribute)
 [![Discord Shield](https://img.shields.io/discord/983602196493004820?style=flat&colorA=338fbb&colorB=1c1c1c&label=discord&logo=discord&logoColor=ffffff)](https://discord.gg/blanklob-community-983602196493004820)
 
 [Contributing](#contributing) |
@@ -76,7 +76,7 @@ To debug your social share previews, you can use the [Facebook Sharing Debugger]
 
 ## Contributing
 
-We'd love your help! Please read our [contributing guide](./CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements.
+We'd love your help! Please read our [contributing guide](https://github.com/odestry/contribute) to learn about our development process, how to propose bug fixes and improvements.
 
 ## License
 
