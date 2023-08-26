@@ -1,6 +1,6 @@
 {
   "name": "theme-development-helpers",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "packageManager": "pnpm@8.1.1",
   "sideEffects": false,
