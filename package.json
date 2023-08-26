@@ -1,9 +1,8 @@
 {
   "name": "theme-development-helpers",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "packageManager": "pnpm@8.1.1",
-  "sideEffects": false,
   "scripts": {
     "lint": "shopify theme check",
     "release": "bumpp"
@@ -11,6 +10,14 @@
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.2.2",
     "@shopify/theme": "^3.48.4",
-    "prettier": "^3.0.2"
+    "lint-staged": "^14.0.1",
+    "prettier": "^3.0.2",
+    "simple-git-hooks": "^2.9.0"
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm lint-staged"
+  },
+  "lint-staged": {
+    "*.liquid": "shopify theme check"
   }
 }
