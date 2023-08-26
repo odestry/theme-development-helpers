@@ -10,14 +10,6 @@
   "devDependencies": {
     "@shopify/prettier-plugin-liquid": "^1.2.2",
     "@shopify/theme": "^3.48.4",
-    "lint-staged": "^14.0.1",
-    "prettier": "^3.0.2",
-    "simple-git-hooks": "^2.9.0"
-  },
-  "simple-git-hooks": {
-    "pre-commit": "pnpm lint-staged"
-  },
-  "lint-staged": {
-    "*.liquid": "shopify theme check"
+    "prettier": "^3.0.2"
   }
 }
