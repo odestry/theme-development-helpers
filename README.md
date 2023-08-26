@@ -28,8 +28,8 @@ You can navigate these snippets by using the table below.
 
 | Category | Snippet | Description |
 | --- | --- | --- |
-| [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development. 
-| [Metas](#metas) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
+| [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development.
+| [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
 
 ## Tools
 
@@ -37,7 +37,9 @@ You can navigate these snippets by using the table below.
 
 A simple indicator that shows which viewport size you are in. Useful for debugging and development.
 
-Built with [Tailwind CSS](https://tailwindcss.com/) and can be added on the `theme.liquid` layout file.
+Built with [Tailwind CSS](https://tailwindcss.com) and can be added on the `theme.liquid` layout file.
+
+Copy code from [this file](./tools/development-screen-indicator.liquid).
 
 ```liquid
 {% liquid 
@@ -58,11 +60,13 @@ An example of a setting to enable the development screen indicator on demand:
 }
 ```
 
-## Metas
+## Meta
 
 ### Social share
 
 A small snippet to render all necessary meta tags for social sharing and page previews on socials.
+
+Copy code from [this file](./meta/social-share.liquid).
 
 ```liquid
 {% render 'social-share' %}
@@ -76,7 +80,7 @@ To debug your social share previews, you can use the [Facebook Sharing Debugger]
 
 ## Contributing
 
-We'd love your help! Please read our [contributing guide](https://github.com/odestry/contribute) to learn about our development process, how to propose bug fixes and improvements.
+We'd love your help! Please read our [contributing guide](https://github.com/odestry/.github/blob/main/CONTRIBUTING.md) to learn about our development process, how to propose bug fixes and improvements.
 
 ## License
 

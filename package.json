@@ -1,0 +1,16 @@
+{
+  "name": "theme-development-helpers",
+  "version": "0.1.0",
+  "private": true,
+  "packageManager": "pnpm@8.1.1",
+  "sideEffects": false,
+  "scripts": {
+    "lint": "shopify theme check",
+    "release": "bumpp"
+  },
+  "devDependencies": {
+    "@shopify/prettier-plugin-liquid": "^1.2.2",
+    "@shopify/theme": "^3.48.4",
+    "prettier": "^3.0.2"
+  }
+}

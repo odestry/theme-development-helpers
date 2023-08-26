@@ -1,0 +1,10 @@
+root: .
+
+MissingRequiredTemplateFiles:
+  enabled: false
+
+RequiredDirectories:
+  enabled: false
+  
+DefaultLocale:
+  enabled: false
