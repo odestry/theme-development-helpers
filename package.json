@@ -9,6 +9,7 @@
     "release": "bumpp"
   },
   "devDependencies": {
+    "@antfu/ni": "^0.21.6",
     "@shopify/prettier-plugin-liquid": "^1.2.2",
     "@shopify/theme": "^3.48.4",
     "bumpp": "^9.2.0",

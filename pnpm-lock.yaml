@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 devDependencies:
+  '@antfu/ni':
+    specifier: ^0.21.6
+    version: 0.21.6
   '@shopify/prettier-plugin-liquid':
     specifier: ^1.2.2
     version: 1.2.2(prettier@3.0.2)
@@ -19,6 +22,11 @@ devDependencies:
     version: 3.0.2
 
 packages:
+
+  /@antfu/ni@0.21.6:
+    resolution: {integrity: sha512-Hj0BKIOspbo+OsPT5mjONeqpuVb4bxp9jdJ4p/b5GxgYNIqJjBcJdp0DEON7CJflKoWuHf7I52wO5kOJJ4DveQ==}
+    hasBin: true
+    dev: true
 
   /@bugsnag/browser@7.21.0:
     resolution: {integrity: sha512-mJ6r6SXpts+hdSnDNmTR35lZ+95BthqXpgBrDwquDCoY++zQ4OuzrkA/HZYD/rfpdSpgb7lO+AAlD7qrd9IylA==}
