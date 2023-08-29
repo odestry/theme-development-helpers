@@ -1,3 +1,4 @@
+{% comment %}theme-check-disable ImgLazyLoading, RemoteAsset{% endcomment %}
 {% comment %}
   Renders an image tag with all necessary attributes.
 
@@ -13,19 +14,20 @@
 {% endcomment %}
 
 {% liquid
-  assign class = 'aspect-auto h-auto w-full object-cover ' | append: class
+  assign class = 'aspect-auto h-auto w-full object-cover rounded-sm ' | append: class
   assign alt = alt | default: image.alt | escape
 
   assign lazyload = lazyload | default: false
+
   assign priority = 'auto'
   assign decoding = 'auto'
 
-  if lazyload == false
-    assign loading = 'eager'
-    assign priority = 'high'
-  elsif lazyload == true
+  if lazyload
     assign loading = 'lazy'
     assign decoding = 'async'
+  else
+    assign loading = 'eager'
+    assign priority = 'high'
   endif
 %}
 
@@ -37,7 +39,7 @@
       | image_tag:
         alt: alt,
         class: class,
-        widths: '200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000,2200',
+        widths: '100,200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000',
         loading: loading,
         fetchpriority: priority,
         decoding: decoding
