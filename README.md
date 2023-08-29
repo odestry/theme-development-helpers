@@ -88,7 +88,7 @@ A lightweight image snippet.
 
 Copy code from [this file](./ui/image.liquid).
 
-Check the opinions behind the image snippet as well as a preview of the snippet in action [here](/).
+Check the opinions behind the image snippet as well as a preview of the snippet in action [here](https://github.com/odestry/theme-image).
 
 ```liquid
 {% render 'image' with product.featured_image %}
