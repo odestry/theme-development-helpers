@@ -31,6 +31,7 @@ You can navigate these snippets by using the table below.
 | --- | --- | --- |
 | [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
+| [UI](#ui) | [Image](#image) | A lightweight image snippet. |
 
 ## Tools
 
@@ -78,6 +79,42 @@ You can also check Shopify [recommandations](https://help.shopify.com/manual/onl
 #### Debugging previews
 
 To debug your social share previews, you can use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the [Twitter Card Validator](https://cards-dev.twitter.com/validator).
+
+## UI
+
+### Image
+
+A lightweight image snippet.
+
+Copy code from [this file](./ui/image.liquid).
+
+Check the opinions behind the image snippet as well as a preview of the snippet in action [here](/).
+
+```liquid
+{% render 'image' with product.featured_image %}
+```
+
+Accepts multiple parameters:
+
+```liquid
+{% render 'image' with product.featured_image,
+    alt: product.title,
+    class: 'aspect-square object-center',
+    lazyload: true,
+    placeholder: 'hero-apparel-3'
+%}
+```
+
+#### Features
+
+The image snippet is designed to be as flexible as possible, and can be extended and adapted to fit your theme setup.
+
+- It supports Shopify focal points.
+- Uses native browser lazyloading.
+- Generates responsive srcset.
+- Renders a placeholder if no image is selected.
+- Can be styled with classes.
+- Supports priority hints, as well as async decoding for less important images.
 
 ## Contributing
 
