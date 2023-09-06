@@ -60,5 +60,5 @@
 
 {% if page_image %}
   <meta property="twitter:image" content="{{ page_image | image_url | prepend: 'https:' }}">
-  <meta property="twitter:image:alt" content="{{ page_image.alt | escape }}">
+  <meta property="twitter:image:alt" content="{{ page_image.alt | default: shop.name | escape }}">
 {% endif %}
