@@ -1,11 +1,12 @@
 {% comment %}theme-check-disable ImgLazyLoading, RemoteAsset{% endcomment %}
 {% comment %}
-  Renders an image tag with all necessary attributes.
+  Renders a responsive image tag with all necessary attributes.
 
   Accepts:
     - image: {object} Image object (optional)
     - class: {string} Extra classes (optional)
     - lazyload: {boolean} Lazyload the image (optional) (default: false)
+    - width: {integer} Maximum image width (optional) (default: image.width)
     - alt: {string} Custom image ALT (optional) (default: image.alt)
     - placeholder: {string} Placeholder name when image is empty (optional) (default: 'hero-apparel-1')
 
@@ -16,6 +17,7 @@
 {% liquid
   assign class = 'aspect-auto h-auto w-full object-cover rounded-sm ' | append: class
   assign alt = alt | default: image.alt | escape
+  assign width = width | default: image.width | default: 800
 
   assign lazyload = lazyload | default: false
 
@@ -35,11 +37,11 @@
   {% if image and image != blank %}
     {{
       image
-      | image_url: width: image.width
+      | image_url: width: width
       | image_tag:
         alt: alt,
         class: class,
-        widths: '100,200,300,400,500,600,700,800,1000,1200,1400,1600,1800,2000',
+        widths: '100,200,300,400,500,600,700,800,1000,1200,1400,1600,1800',
         loading: loading,
         fetchpriority: priority,
         decoding: decoding
@@ -49,14 +51,12 @@
       assign placeholder = placeholder | default: 'hero-apparel-1'
       assign placeholder_image = placeholder | placeholder_svg_tag | base64_encode | prepend: 'data:image/svg+xml;base64,'
     %}
-
     <img
-      role="presentation"
       class="{{ class }}"
-      src="{{ placeholder_image }}"
       alt="{{ placeholder }}"
-      width="800"
-      height="800"
+      src="{{ placeholder_image }}"
+      width="{{ width }}"
+      height="{{ width }}"
       loading="{{ loading }}"
       fetchpriority="{{ priority }}"
       decoding="{{ decoding }}"

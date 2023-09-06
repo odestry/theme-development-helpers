@@ -31,7 +31,7 @@ You can navigate these snippets by using the table below.
 | --- | --- | --- |
 | [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
-| [UI](#ui) | [Image](#image) | A lightweight image snippet. |
+| [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
 
 ## Tools
 
@@ -84,17 +84,58 @@ To debug your social share previews, you can use the [Facebook Sharing Debugger]
 
 ### Image
 
-A lightweight image snippet.
+A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts.
 
 Copy code from [this file](./ui/image.liquid).
 
-Check the opinions behind the image snippet as well as a preview of the snippet in action [here](https://github.com/odestry/theme-image).
+Check more informations about this image snippet as well as a preview of the snippet in action [here](https://github.com/odestry/theme-image).
+
+#### Arguments
+
+The image has a very easy-to-understand sample API, and all of these arguments are optional:
+
+- `image`: The image object. This can be a product image or a media object of type image as well.
+- `class`: A string of classes, same as the class HTML attribute.
+- `lazyload`: By default, the snippet is eagerly loaded. If you want to lazyload the image, you can set this boolean parameter to true.
+- `width`: This is the maximum width of the srcset. In some cases, it makes sense to load a smaller srcset if the image is small.
+- `alt`: You can set a custom alt text. By default, Shopify uses the product title as the alt text if the image is associated with a product.
+- `placeholder`: The placeholder handle that is defined by Shopify. If you want to set other types of placeholders, check the Shopify documentation.
+
+#### Examples
+
+There are many different ways to use this snippet. The easiest one is just by calling it with a render tag.
+
+##### Displaying a placeholder
+
+If the image is blank or doesn't have any image object, it displays a placeholder like the following:
+
+```liquid
+{% render 'image' %}
+```
+
+You can also pass a placeholder names handle to the snippet:
+
+```liquid
+{% render 'image', placeholder: 'product-apparel-4' %}
+```
+
+> You can check a list of all the available placeholders illustrations [here](https://shopify.dev/docs/api/liquid/filters#placeholder_svg_tag).
+
+##### Displaying product featured image
+
+You can easily display a product image with the following:
 
 ```liquid
 {% render 'image' with product.featured_image %}
 ```
 
-Accepts multiple parameters:
+Which is the same as:
+
+```liquid
+{% render 'image', image: product.featured_image %}
+```
+
+It also accepts multple arguments at once:
 
 ```liquid
 {% render 'image' with product.featured_image,
@@ -105,16 +146,51 @@ Accepts multiple parameters:
 %}
 ```
 
-#### Features
+##### Lazyload images in a product grid
 
-The image snippet is designed to be as flexible as possible, and can be extended and adapted to fit your theme setup.
+You can lazyload images if the grid is made of different product cards, for example, and set the lazyload attribute based on the current position of the image on the grid.
 
-- It supports Shopify focal points.
-- Uses native browser lazyloading.
-- Generates responsive srcset.
-- Renders a placeholder if no image is selected.
-- Can be styled with classes.
-- Supports priority hints, as well as async decoding for less important images.
+```liquid
+{% liquid
+  assign lazyload = false
+  for product in collection.products
+    if forloop.index > 6
+      assign lazyload = true
+    endif
+
+    render 'image' with product.featured_image, lazyload: lazyload
+  endfor
+%}
+```
+
+##### Set aspect ratio of the image
+
+We recommend using the native browser aspect ratio CSS rule. An example would be to create a class for each of these rules and pass it via the class argument like the following:
+
+```liquid
+{% render 'image' with product.featured_image, class: 'aspect-square' %}
+```
+
+**If you don't use tailwind, you can set this class on the image instead:**
+
+```css
+.image {
+  display:block;
+  vertical-align:middle
+  aspect-ratio: auto;
+  height: auto;
+  object-fit: cover;
+  max-width:100%;
+}
+```
+
+And then set this on the snippet class default value:
+
+```liquid
+  ...
+  assign class = 'image ' | append: class
+  ...
+```
 
 ## Contributing
 
