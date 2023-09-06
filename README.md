@@ -135,7 +135,7 @@ Which is the same as:
 {% render 'image', image: product.featured_image %}
 ```
 
-It also accepts multple arguments at once:
+It also accepts multiple arguments at once:
 
 ```liquid
 {% render 'image' with product.featured_image,
