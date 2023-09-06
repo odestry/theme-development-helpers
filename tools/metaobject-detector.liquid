@@ -1,0 +1,23 @@
+{% comment %}
+  A way to detect metaobject on the current metaobject
+  template without relying on dynamic ressources.
+
+  Usage:
+    {% render 'metaobject-detector' %}
+{% endcomment %}
+
+{% liquid
+  assign current_metaobject = null
+
+  for metaobject in shop.metaobjects[template.name].values
+    if request.page_type == 'metaobject' and request.path contains metaobject.system.handle
+      assign current_metaobject = metaobject
+    endif
+  endfor
+
+  echo current_metaobject
+%}
+
+{% if current_page != null %}
+  <code>{{ current_metaobject.system.handle }}</code>
+{% endif %}
