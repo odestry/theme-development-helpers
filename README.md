@@ -175,8 +175,8 @@ We recommend using the native browser aspect ratio CSS rule. An example would be
 
 ```css
 .image {
-  display:block;
-  vertical-align:middle
+  display: block;
+  vertical-align: middle;
   aspect-ratio: auto;
   height: auto;
   object-fit: cover;
