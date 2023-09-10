@@ -1,5 +1,5 @@
 {% comment %}
-  A way to detect metaobject on the current metaobject
+  A way to detect the current metaobject on the metaobject
   template without relying on dynamic ressources.
 
   Usage:
@@ -9,11 +9,13 @@
 {% liquid
   assign current_metaobject = null
 
-  for metaobject in shop.metaobjects[template.name].values
-    if request.page_type == 'metaobject' and request.path contains metaobject.system.handle
-      assign current_metaobject = metaobject
-    endif
-  endfor
+  if request.page_type == 'metaobject'
+    for metaobject in shop.metaobjects[template.name].values
+      if request.path contains metaobject.system.handle
+        assign current_metaobject = metaobject
+      endif
+    endfor
+  endif
 %}
 
 {% if current_metaobject != null %}

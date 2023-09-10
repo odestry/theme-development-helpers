@@ -31,6 +31,7 @@ You can navigate these snippets by using the table below.
 | Category | Snippet | Description |
 | --- | --- | --- |
 | [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development.
+| [Tools](#tools) | [Metaobject detector](#metaobject-detector) | A way to detect the current metaobject on the metaobject template without relying on dynamic ressources.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
 | [Schemas](#schemas) | [Schema Website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
@@ -50,9 +51,9 @@ Built with [Tailwind CSS](https://tailwindcss.com) and can be added on the `them
 Copy code from [this file](./tools/development-screen-indicator.liquid).
 
 ```liquid
-{% liquid 
+{% liquid
   if settings.enable_development_mode
-    render 'development-screen-indicator' 
+    render 'development-screen-indicator'
   endif
 %}
 ```
@@ -67,6 +68,18 @@ An example of a setting to enable the development screen indicator on demand:
   "default": false
 }
 ```
+
+### Metaobject detector
+
+This must be used inside a metaobject template. It detects the current metaobject and renders its properties or other metaobjects if it has any.
+
+Copy code from [this file](./tools/metaobject-detector.liquid).
+
+```liquid
+{% render 'metaobject-detector' %}
+```
+
+Learn more about metaobject templates [here](https://shopify.dev/docs/themes/architecture/templates/metaobject).
 
 ## Meta
 
