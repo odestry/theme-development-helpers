@@ -31,6 +31,7 @@ You can navigate these snippets by using the table below.
 | --- | --- | --- |
 | [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
+| [Meta](#meta) | [Schema Website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
 
 ## Tools
@@ -75,6 +76,18 @@ Copy code from [this file](./meta/social-share.liquid).
 ```
 
 You can also check Shopify [recommandations](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images) on social sharing.
+
+### Schema Website
+
+Renders the schema.org website JSON-LD for Site Names. This is useful for SEO.
+
+Copy code from [this file](./meta/schema-website.liquid).
+
+```liquid
+{% render 'schema-website' %}
+```
+
+> You can check the [Google Structured Data Docs](https://developers.google.com/search/docs/appearance/site-names) for more information.
 
 #### Debugging previews
 
