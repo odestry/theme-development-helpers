@@ -104,7 +104,7 @@ To debug your social share previews, you can use the [Facebook Sharing Debugger]
 
 These JSON-LD snippets are based on the [Schema.org](https://schema.org) vocabulary and are used to improve the display of your pages on search engines.
 
-### Schema Website
+### Schema website
 
 Renders the schema.org website JSON-LD for Site Names.
 
@@ -116,7 +116,7 @@ Copy code from [this file](./schemas/schema-website.liquid).
 
 > You can check the [Google Structured Data Docs](https://developers.google.com/search/docs/appearance/site-names) for more information.
 
-### Schema Organization
+### Schema organization
 
 Renders the schema.org JSON-LD for Brand and Organization. Must be used on all templates.
 
