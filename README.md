@@ -31,10 +31,12 @@ You can navigate these snippets by using the table below.
 | --- | --- | --- |
 | [Tools](#tools) | [Development screen indicator](#development-screen-indicator) | A simple indicator that shows which viewport size you are in. Useful for debugging and development.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
-| [Meta](#meta) | [Schema Website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
+| [Schemas](#schemas) | [Schema Website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
 
 ## Tools
+
+These are tools that can be used to enhance the theme development experience.
 
 ### Development screen indicator
 
@@ -46,9 +48,9 @@ Copy code from [this file](./tools/development-screen-indicator.liquid).
 
 ```liquid
 {% liquid 
-    if settings.enable_development_mode
-        render 'development-screen-indicator' 
-    endif
+  if settings.enable_development_mode
+    render 'development-screen-indicator' 
+  endif
 %}
 ```
 
@@ -56,14 +58,16 @@ An example of a setting to enable the development screen indicator on demand:
 
 ```json
 {
-    "type": "checkbox",
-    "id": "enable_development_mode",
-    "label": "Enable development mode",
-    "default": false
+  "type": "checkbox",
+  "id": "enable_development_mode",
+  "label": "Enable development mode",
+  "default": false
 }
 ```
 
 ## Meta
+
+These are snippets that render meta tags to enhance the storefront with additional information.
 
 ### Social share
 
@@ -77,11 +81,19 @@ Copy code from [this file](./meta/social-share.liquid).
 
 You can also check Shopify [recommandations](https://help.shopify.com/manual/online-store/images/showing-social-media-thumbnail-images) on social sharing.
 
+#### Debugging previews
+
+To debug your social share previews, you can use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the [Twitter Card Validator](https://cards-dev.twitter.com/validator).
+
+## Schemas
+
+These JSON-LD snippets are based on the [Schema.org](https://schema.org) vocabulary and are used to improve the display of your pages on search engines.
+
 ### Schema Website
 
-Renders the schema.org website JSON-LD for Site Names. This is useful for SEO.
+Renders the schema.org website JSON-LD for Site Names.
 
-Copy code from [this file](./meta/schema-website.liquid).
+Copy code from [this file](./schemas/schema-website.liquid).
 
 ```liquid
 {% render 'schema-website' %}
@@ -89,11 +101,13 @@ Copy code from [this file](./meta/schema-website.liquid).
 
 > You can check the [Google Structured Data Docs](https://developers.google.com/search/docs/appearance/site-names) for more information.
 
-#### Debugging previews
+#### Debugging structured data
 
-To debug your social share previews, you can use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the [Twitter Card Validator](https://cards-dev.twitter.com/validator).
+To debug your structured data, you can use the [Google Structured Data Testing Tool](https://search.google.com/structured-data/testing-tool) and the [Google Rich Results Test](https://search.google.com/test/rich-results).
 
 ## UI
+
+These are user interface snippets that are optimized and can be reused within your theme.
 
 ### Image
 
@@ -152,10 +166,10 @@ It also accepts multiple arguments at once:
 
 ```liquid
 {% render 'image' with product.featured_image,
-    alt: product.title,
-    class: 'aspect-square object-center',
-    lazyload: true,
-    placeholder: 'hero-apparel-3'
+  alt: product.title,
+  class: 'aspect-square object-center',
+  lazyload: true,
+  placeholder: 'hero-apparel-3'
 %}
 ```
 
@@ -181,7 +195,8 @@ You can lazyload images if the grid is made of different product cards, for exam
 We recommend using the native browser aspect ratio CSS rule. An example would be to create a class for each of these rules and pass it via the class argument like the following:
 
 ```liquid
-{% render 'image' with product.featured_image, class: 'aspect-square' %}
+{% render 'image' with product.featured_image, 
+  class: 'aspect-square' %}
 ```
 
 **If you don't use tailwind, you can set this class on the image instead:**
@@ -193,7 +208,7 @@ We recommend using the native browser aspect ratio CSS rule. An example would be
   aspect-ratio: auto;
   height: auto;
   object-fit: cover;
-  max-width:100%;
+  max-width: 100%;
 }
 ```
 
