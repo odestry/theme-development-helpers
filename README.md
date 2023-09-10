@@ -34,6 +34,8 @@ You can navigate these snippets by using the table below.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
 | [Schemas](#schemas) | [Schema Website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
+| [Schemas](#schemas) | [Schema Organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
+
 
 ## Tools
 
@@ -101,6 +103,18 @@ Copy code from [this file](./schemas/schema-website.liquid).
 ```
 
 > You can check the [Google Structured Data Docs](https://developers.google.com/search/docs/appearance/site-names) for more information.
+
+### Schema Organization
+
+Renders the schema.org JSON-LD for Brand and Organization. Must be used on all templates.
+
+Copy code from [this file](./schemas/schema-organization.liquid).
+
+```liquid
+{% render 'schema-organization' %}
+```
+
+> You can check the [Google Structured Data Docs](https://developers.google.com/search/docs/appearance/structured-data/logo) for more information about this schema.
 
 #### Debugging structured data
 
