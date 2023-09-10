@@ -14,10 +14,8 @@
       assign current_metaobject = metaobject
     endif
   endfor
-
-  echo current_metaobject
 %}
 
-{% if current_page != null %}
+{% if current_metaobject != null %}
   <code>{{ current_metaobject.system.handle }}</code>
 {% endif %}
