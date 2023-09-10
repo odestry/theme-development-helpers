@@ -4,6 +4,7 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/odestry/theme-development-helpers/ci.yml?style=flat&label=CI&colorA=338fbb&colorB=1c1c1c&logoColor=ffffff)](https://github.com/odestry/theme-development-helpers/blob/main/.github/workflows/ci.yml)
 [![Discord Shield](https://img.shields.io/discord/983602196493004820?style=flat&colorA=338fbb&colorB=1c1c1c&label=discord&logo=discord&logoColor=ffffff)](https://discord.gg/blanklob-community-983602196493004820)
 
+[Usage](#usage) |
 [Contributing](#contributing) |
 [License](#license)
 
@@ -195,8 +196,7 @@ You can lazyload images if the grid is made of different product cards, for exam
 We recommend using the native browser aspect ratio CSS rule. An example would be to create a class for each of these rules and pass it via the class argument like the following:
 
 ```liquid
-{% render 'image' with product.featured_image, 
-  class: 'aspect-square' %}
+{% render 'image' with product.featured_image, class: 'aspect-square' %}
 ```
 
 **If you don't use tailwind, you can set this class on the image instead:**
