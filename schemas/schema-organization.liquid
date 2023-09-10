@@ -1,0 +1,31 @@
+{% comment %}
+  Renders the schema.org JSON-LD for Brand and Organization.
+
+  Usage:
+    {% render 'schema-organization' %}
+{% endcomment %}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    {% if shop.brand.logo %}
+      "logo": {{ shop.brand.logo | image_url: width: 512 | prepend: "https:" | json }},
+    {% endif %}
+    {% if shop.brand.short_description %}
+      "description": {{ shop.brand.short_description | json }},
+    {% endif %}
+    {% if shop.brand.slogan %}
+      "slogan": {{ shop.brand.slogan | json }},
+    {% endif %}
+    {% if shop.brand.metafields.social_links.size > 0 %}
+      "sameAs": [
+        {% for social_link in shop.brand.metafields.social_links %}
+          {{ social_link.last.value | json }}{% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ],
+    {% endif %}
+    "url": {{ request.origin | append: page.url | json }}
+  }
+</script>
