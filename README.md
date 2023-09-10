@@ -34,9 +34,8 @@ You can navigate these snippets by using the table below.
 | [Tools](#tools) | [Metaobject detector](#metaobject-detector) | A way to detect the current metaobject on the metaobject template without relying on dynamic ressources.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
-| [Schemas](#schemas) | [Schema Website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
-| [Schemas](#schemas) | [Schema Organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
-
+| [Schemas](#schemas) | [Schema website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
+| [Schemas](#schemas) | [Schema organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
 
 ## Tools
 
