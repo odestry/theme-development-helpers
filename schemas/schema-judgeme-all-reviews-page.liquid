@@ -1,0 +1,60 @@
+{% comment %}
+  Renders the schema.org JSON-LD for JudgeMe all reviews page.
+
+  Be careful to display it only on the correct template
+
+  Usage:
+    {% if template == 'page.judgeme_all_reviews' %}
+      {% render 'schema-judgeme-all-reviews-page' %}
+    {% endif %}
+{% endcomment %}
+
+{% liquid
+  assign ratingValue = shop.metafields.judgeme.shop_reviews_rating
+  assign reviewCount = shop.metafields.judgeme.shop_reviews_count
+  assign reviewDataMetafield = shop.metafields.judgeme['all_reviews_0']
+  assign reviewDataArray = reviewDataMetafield | escape | split: 'jdgm-rev__reply'
+  assign numberOfTextReviews = reviewDataArray.size | minus: 1
+%}
+
+<script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": {{ shop.name | json }},
+    "url": {{ shop.url | json }},
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "worstRating": "1",
+      "ratingValue": {{ ratingValue | json }},
+      "bestRating": "5",
+      "reviewCount": {{ reviewCount | json }}
+    },
+    "review": [
+      {% for reviewData in reviewDataArray -%}
+        {% liquid
+          assign reviewAuthor = reviewData | split: 'jdgm-rev__author&#39;&gt;' | last | split: '&lt;/span&gt;' | first
+          assign reviewName = reviewData | split: 'jdgm-rev__title&#39;&gt;' | last | split: '&lt;/b&gt;' | first
+          assign reviewBody = reviewData | split: 'jdgm-rev__body&#39;&gt;' | last | split: '&lt;/p&gt;' | first | split: '&lt;p&gt;' | last | strip_newlines
+          assign reviewRating = reviewData | split: 'data-score=&#39;' | last | split: '&#39;' | first
+
+          if forloop.index0 == numberOfTextReviews
+            break
+          endif
+        %}
+        {
+          "@type": "Review",
+          "author": {{ reviewAuthor | json }},
+          "name": {{ reviewName | json }},
+          "reviewBody": {{ reviewBody | json }},
+          "reviewRating": {
+            "@type": "Rating",
+            "worstRating": "1",
+            "ratingValue": {{ reviewRating | json }},
+            "bestRating": "5"
+          }
+        }{%- if forloop.index != numberOfTextReviews %},{% endif %}
+      {%- endfor %}
+    ]
+  }
+</script>
