@@ -34,9 +34,9 @@ You can navigate these snippets by using the table below.
 | [Tools](#tools) | [Metaobject detector](#metaobject-detector) | A way to detect the current metaobject on the metaobject template without relying on dynamic ressources.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
-| [Schemas](#schemas) | [Schema website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
-| [Schemas](#schemas) | [Schema organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
-| [Schemas](#schemas) | [Schema article](#schema-article) | Renders the schema.org JSON-LD for a blog post or an article. |
+| [SEO](#seo) | [Schema website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
+| [SEO](#seo) | [Schema organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
+| [SEO](#seo) | [Schema article](#schema-article) | Renders the schema.org JSON-LD for a blog post or an article. |
 
 ## Tools
 
@@ -101,7 +101,7 @@ You can also check Shopify [recommandations](https://help.shopify.com/manual/onl
 
 To debug your social share previews, you can use the [Facebook Sharing Debugger](https://developers.facebook.com/tools/debug/) and the [Twitter Card Validator](https://cards-dev.twitter.com/validator).
 
-## Schemas
+## SEO
 
 These JSON-LD snippets are based on the [Schema.org](https://schema.org) vocabulary and are used to improve the display of your pages on search engines.
 
@@ -109,7 +109,7 @@ These JSON-LD snippets are based on the [Schema.org](https://schema.org) vocabul
 
 Renders the schema.org website JSON-LD for Site Names.
 
-Copy code from [this file](./schemas/schema-website.liquid).
+Copy code from [this file](./seo/schema-website.liquid).
 
 ```liquid
 {% render 'schema-website' %}
@@ -121,7 +121,7 @@ Copy code from [this file](./schemas/schema-website.liquid).
 
 Renders the schema.org JSON-LD for Brand and Organization. Must be used on all templates.
 
-Copy code from [this file](./schemas/schema-organization.liquid).
+Copy code from [this file](./seo/schema-organization.liquid).
 
 ```liquid
 {% render 'schema-organization' %}
@@ -133,7 +133,7 @@ Copy code from [this file](./schemas/schema-organization.liquid).
 
 Renders the schema.org JSON-LD for Blog post and article. Must be used on article cards or templates.
 
-Copy code from [this file](./schemas/schema-article.liquid).
+Copy code from [this file](./seo/schema-article.liquid).
 
 ```liquid
 {% render 'schema-article' article: block.settings.article %}
