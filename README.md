@@ -36,6 +36,7 @@ You can navigate these snippets by using the table below.
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
 | [Schemas](#schemas) | [Schema website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
 | [Schemas](#schemas) | [Schema organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
+| [Schemas](#schemas) | [Schema article](#schema-article) | Renders the schema.org JSON-LD for Blog post and article. |
 
 ## Tools
 
@@ -127,6 +128,18 @@ Copy code from [this file](./schemas/schema-organization.liquid).
 ```
 
 > You can check the [Google Structured Data Docs](https://developers.google.com/search/docs/appearance/structured-data/logo) for more information about this schema.
+
+### Schema article
+
+Renders the schema.org JSON-LD for Blog post and article. Must be used on article cards or templates.
+
+Copy code from [this file](./schemas/schema-article.liquid).
+
+```liquid
+{% render 'schema-article' article: block.settings.article %}
+```
+
+> You can check the [Google Structured Data Docs](https://developers.google.com/search/docs/appearance/structured-data/article) for more information about this schema.
 
 #### Debugging structured data
 
