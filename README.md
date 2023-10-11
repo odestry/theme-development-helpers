@@ -34,6 +34,7 @@ You can navigate these snippets by using the table below.
 | [Tools](#tools) | [Metaobject detector](#metaobject-detector) | A way to detect the current metaobject on the metaobject template without relying on dynamic ressources.
 | [Meta](#meta) | [Social share](#social-share) | A small snippet to render all necessary meta tags for social sharing and page previews on socials. |
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
+| [UI](#ui) | [Shop pay button](#shop-pay-button) | Pure liquid dynamic Shop pay button for express checkout. |
 | [SEO](#seo) | [Schema website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
 | [SEO](#seo) | [Schema organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
 | [SEO](#seo) | [Schema article](#schema-article) | Renders the schema.org JSON-LD for a blog post or an article. |
@@ -258,6 +259,18 @@ And then set this on the snippet class default value:
   assign class = 'image ' | append: class
   ...
 ```
+
+### Shop pay button
+
+Pure liquid dynamic Shop pay button for express checkout.
+
+Copy code from [this file](./ui/shop-pay-button.liquid).
+
+```liquid
+{% render 'shop-pay-button' variant: variant: product.selected_or_first_available_variant %}
+```
+
+This snippet is based on the [Shopify web component](https://shopify.dev/docs/custom-storefronts/additional-sdks/web-components#buy-with-shop-pay-component).
 
 ## Contributing
 
