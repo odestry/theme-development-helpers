@@ -1,17 +1,17 @@
 {% comment %}
-  Renders shop pay button.
+  Renders a shop pay button.
 
   Accepts:
-    - variant: {object} first selected variant object. (required)
+    - variant: {object} first selected product variant. (required)
 
   Usage:
-    {% render 'shop-pay-button' %}
+    {% render 'shop-pay-button' variant: product.variants.first %}
 {% endcomment %}
 
 {% if variant and variant != empty %}
   <a
     href="{{ routes.cart_url | append: '/' | append: variant.id | append: ':1?payment=shop_pay' }}"
-    class="inline-flex gap-1 font-sans font-medium items-center justify-center cursor-pointer no-underline disabled:opacity-50 disabled:cursor-not-allowed h-11 px-8 rounded-sm bg-[#5a31f4] text-white"
+    class="inline-flex items-center justify-center gap-1 h-11 px-8 rounded-sm bg-[#5a31f4] text-white font-sans font-medium cursor-pointer no-underline disabled:opacity-50 disabled:cursor-not-allowed"
     aria-label="{{ 'Buy with Shop Pay' }}"
   >
     <span aria-hidden="true">{{ 'Buy with' }}</span>
