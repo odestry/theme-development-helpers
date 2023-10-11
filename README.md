@@ -36,7 +36,7 @@ You can navigate these snippets by using the table below.
 | [UI](#ui) | [Image](#image) | A powerful, less opinionated image snippet built on top of evergreen web technologies for Shopify storefronts. |
 | [Schemas](#schemas) | [Schema website](#schema-website) | Renders the schema.org website JSON-LD for Site Name. |
 | [Schemas](#schemas) | [Schema organization](#schema-organization) | Renders the schema.org JSON-LD for Brand and Organization. |
-| [Schemas](#schemas) | [Schema article](#schema-article) | Renders the schema.org JSON-LD for Blog post and article. |
+| [Schemas](#schemas) | [Schema article](#schema-article) | Renders the schema.org JSON-LD for a blog post or an article. |
 
 ## Tools
 
