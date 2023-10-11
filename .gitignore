@@ -2,6 +2,8 @@
 
 # Dependencies
 node_modules
+bun.lockb
+pnpm-lock.yaml
 
 # Editor directories and files
 .idea
