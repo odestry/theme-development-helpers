@@ -267,7 +267,7 @@ Pure liquid dynamic Shop pay button for express checkout.
 Copy code from [this file](./ui/shop-pay-button.liquid).
 
 ```liquid
-{% render 'shop-pay-button' variant: variant: product.selected_or_first_available_variant %}
+{% render 'shop-pay-button' variant: product.selected_or_first_available_variant %}
 ```
 
 This snippet is based on the [Shopify web component](https://shopify.dev/docs/custom-storefronts/additional-sdks/web-components#buy-with-shop-pay-component).
