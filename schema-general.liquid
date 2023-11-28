@@ -1,0 +1,280 @@
+{%- comment -%}
+
+    This snippet structures the micro-data using JSON-LD specification. 
+
+    Usage: {% render 'schema-general '%} in theme.liquid file - this will generate the JSON-LD code for all theme templates
+
+    Notes: You might need to add some additional fields to the JSON-LD code, depending on your theme and the data you want to include. 
+        For example, if a 3rd party reviews app (not shopify's) is used, you might want to add the reviews metafields to the product JSON-LD code.
+
+{%- endcomment -%}
+
+{%- if request.page_type == 'product' -%}
+  {%- assign days_product_price_valid_until = 10 | times: 86400 -%}
+
+  {%- capture main_entity_microdata -%}
+    {%- assign is_valid_global_gtin_length = false -%}
+
+    {%- if product.selected_or_first_available_variant.barcode != blank -%}
+      {%- assign gtin_string_length = product.selected_or_first_available_variant.barcode | size -%}
+
+      {%- if gtin_string_length == 8 or gtin_string_length == 12 or gtin_string_length == 13 or gtin_string_length == 14 -%}
+        {%- assign is_valid_global_gtin_length = true -%}
+      {%- endif -%}
+    {%- endif -%}
+
+    "@type": "Product",
+    "productID": {{ product.id | json }},
+    "offers": [
+      {%- for variant in product.variants -%}
+        {%- assign is_valid_gtin_length = false -%}
+
+        {%- if variant.barcode != blank -%}
+          {%- assign gtin_string_length = variant.barcode | size -%}
+
+          {%- if gtin_string_length == 8 or gtin_string_length == 12 or gtin_string_length == 13 or gtin_string_length == 14 -%}
+            {%- assign is_valid_gtin_length = true -%}
+          {%- endif -%}
+        {%- endif -%}
+
+        {
+          "@type": "Offer",
+          "name": {% if product.has_only_default_variant %}{{ product.title | json }}{% else %}{{ variant.title | json }}{% endif %},
+          "availability": {%- if variant.available -%}"https://schema.org/InStock"{%- elsif variant.incoming -%}"https://schema.org/BackOrder"{% else %}"https://schema.org/OutOfStock"{%- endif -%},
+          "price": {{ variant.price | divided_by: 100.0 | json }},
+          "priceCurrency": {{ cart.currency.iso_code | json }},
+          "priceValidUntil": "{{ 'now' | date: '%s' | plus: days_product_price_valid_until | date: '%Y-%m-%d' }}",
+          {%- if variant.sku != blank -%}
+            "sku": {{ variant.sku | json }},
+          {%- endif -%}
+          {%- if variant.barcode != blank -%}
+            {%- if is_valid_gtin_length -%}
+              "gtin": {{ variant.barcode | json }},
+            {%- else -%}
+              "mpn": {{ variant.barcode | json }},
+            {%- endif -%}
+          {%- endif -%}
+          {%- if shop.refund_policy.body != blank -%}
+            "hasMerchantReturnPolicy": {
+              "merchantReturnLink": {{ shop.refund_policy.url | prepend: request.origin | json }}
+            },
+          {%- endif -%}
+          {%- if shop.shipping_policy.body != blank -%}
+            "shippingDetails": {
+              "shippingSettingsLink": {{ shop.shipping_policy.url | prepend: request.origin | json }}
+            },
+          {%- endif -%}
+          "url": "{{ shop.url }}{{ product.url }}?variant={{ variant.id }}"
+        }{% unless forloop.last %},{% endunless %}
+      {%- endfor -%}
+    ],
+    {%- if product.metafields.reviews.rating.value != blank and product.metafields.reviews.rating_count.value > 0 -%}
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.metafields.reviews.rating.value }}",
+        "reviewCount": "{{ product.metafields.reviews.rating_count.value }}",
+        "worstRating": "{{ product.metafields.reviews.rating.value.scale_min }}",
+        "bestRating": "{{ product.metafields.reviews.rating.value.scale_max }}"
+      },
+    {%- endif -%}
+    "brand": {
+      "@type": "Brand",
+      "name": {{ product.vendor | json }}
+    },
+    "name": {{ product.title | json }},
+    "description": {{ product.description | strip_html | json }},
+    "category": {{ product.type | json }},
+    "url": "{{ shop.url }}{{ product.url }}",
+    "sku": {{ product.selected_or_first_available_variant.sku | json }},
+    {%- if product.selected_or_first_available_variant.barcode != blank -%}
+      {%- if is_valid_global_gtin_length -%}
+        "gtin": {{ product.selected_or_first_available_variant.barcode | json }},
+      {%- else -%}
+        "mpn": {{ product.selected_or_first_available_variant.barcode | json }},
+      {%- endif -%}
+    {%- endif -%}
+    {%- if product.selected_or_first_available_variant.weight -%}
+      "weight": {
+      "@type": "QuantitativeValue",
+      "unitCode": {{ product.selected_or_first_available_variant.weight_unit | json }},
+      "value": {{ product.selected_or_first_available_variant.weight_in_unit | json }}
+      },
+    {%- endif -%}
+    "image": {
+      "@type": "ImageObject",
+      "url": "https:{{ page_image | image_url: width: 1024 }}",
+      "image": "https:{{ page_image | image_url: width: 1024 }}",
+      "name": {{ page_image.alt | json }},
+      "width": "1024",
+      "height": "1024"
+    }
+  {%- endcapture -%}
+{%- elsif request.page_type == 'article' -%}
+  {%- capture main_entity_microdata -%}
+    "@type": "BlogPosting",
+    "mainEntityOfPage": "{{ article.url }}",
+    "articleSection": {{ blog.title | json }},
+    "keywords": "{{ article.tags | join: ', ' }}",
+    "headline": {{ article.title | json }},
+    "description": {{ article.excerpt_or_content | strip_html | truncatewords: 25 | json }},
+    "dateCreated": "{{ article.created_at | date: '%Y-%m-%dT%T' }}",
+    "datePublished": "{{ article.published_at | date: '%Y-%m-%dT%T' }}",
+    "dateModified": "{{ article.updated_at | date: '%Y-%m-%dT%T' }}",
+    "image": {
+      "@type": "ImageObject",
+      "url": "https:{{ page_image | image_url: width: 1024 }}",
+      "image": "https:{{ page_image | image_url: width: 1024 }}",
+      "name": {{ page_image.alt | json }},
+      "width": "1024",
+      "height": "1024"
+    },
+    "author": {
+      "@type": "Person",
+      "name": "{{ article.user.first_name | escape }} {{ article.user.last_name | escape }}",
+      "givenName": {{ article.user.first_name | json }},
+      "familyName": {{ article.user.last_name | json }}
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": {{ shop.name | json }}
+    },
+    "commentCount": {{ article.comments_count }},
+    "comment": [
+      {%- for comment in article.comments limit: 5 -%}
+        {
+          "@type": "Comment",
+          "author": {{ comment.author | json }},
+          "datePublished": "{{ comment.created_at | date: '%Y-%m-%dT%T' }}",
+          "text": {{ comment.content | json }}
+        }{%- unless forloop.last -%},{%- endunless -%}
+      {%- endfor -%}
+    ]
+  {%- endcapture -%}
+{%- endif -%}
+
+{%- capture breadcrumb_entity_microdata -%}
+  "@type": "BreadcrumbList",
+  "itemListElement": [{
+      "@type": "ListItem",
+      "position": 1,
+      "name": {{ 'general.home' | t | json }},
+      "item": "{{ shop.url }}"
+    }
+
+    {%- if request.page_type == 'product' -%}
+      {%- if collection -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }, {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ product.title | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+      {%- else -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ product.title | json }},
+          "item": "{{ shop.url }}{{ product.url }}"
+        }
+      {%- endif -%}
+    {%- elsif request.page_type == 'collection' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ collection.title | json }},
+          "item": "{{ shop.url }}{{ collection.url }}"
+        }
+    {%- elsif request.page_type == 'blog' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ blog.title | json }},
+          "item": "{{ shop.url }}{{ blog.url }}"
+        }
+    {%- elsif request.page_type == 'article' -%}
+        ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ blog.title | json }},
+          "item": "{{ shop.url }}{{ blog.url }}"
+        }, {
+          "@type": "ListItem",
+          "position": 3,
+          "name": {{ blog.title | json }},
+          "item": "{{ shop.url }}{{ article.url }}"
+        }
+    {%- elsif request.page_type == 'page' -%}
+       ,{
+          "@type": "ListItem",
+          "position": 2,
+          "name": {{ page.title | json }},
+          "item": "{{ shop.url }}{{ page.url }}"
+        }
+    {%- endif -%}
+  ]
+{%- endcapture -%}
+
+{% if main_entity_microdata != blank %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    {{ main_entity_microdata }}
+  }
+  </script>
+{% endif %}
+
+{% if breadcrumb_entity_microdata != blank %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    {{ breadcrumb_entity_microdata }}
+  }
+  </script>
+{% endif %}
+
+{%- if request.page_type == 'index' -%}
+  {%- assign potential_action_target = request.origin | append: routes.search_url | append: "?q={search_term_string}" -%}
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": {{ shop.name | json }},
+      "url": {{ shop.url | append: page.url | json }},
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {{ potential_action_target | json }},
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": {{ shop.name | json }},
+      {%- if shop.brand.logo -%}
+        "logo": {{ shop.brand.logo | image_url: width: shop.brand.logo.width | prepend: "https:" | json }},
+      {%- endif -%}
+      {%- if shop.brand.short_description -%}
+        "description": {{ shop.brand.short_description | json }},
+      {%- endif -%}
+      {%- if shop.brand.slogan -%}
+        "slogan": {{ shop.brand.slogan | json }},
+      {%- endif -%}
+      {%- if shop.brand.metafields.social_links.size > 0 -%}
+        "sameAs": [
+          {%- for social_link in shop.brand.metafields.social_links -%}
+            {{- social_link.last.value | json -}}{%- unless forloop.last -%},{%- endunless -%}
+          {%- endfor -%}
+        ],
+      {%- endif -%}
+      "url": {{ shop.url | append: page.url | json }}
+    }
+  ]
+  </script>
+{%- endif -%}
