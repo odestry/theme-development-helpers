@@ -1,7 +1,8 @@
 {
   "name": "theme-development-helpers",
-  "version": "1.0.9",
+  "version": "1.0.8",
   "private": true,
+  "packageManager": "pnpm@8.1.1",
   "scripts": {
     "lint": "shopify theme check",
     "release": "bumpp"
